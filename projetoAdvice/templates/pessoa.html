@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pessoa</title>
+    <style>
+        .titulo {
+            font-size:800;
+            border: 1px solid black;
+        };
+        .tbpessoa {
+            color:red;
+            border: 1px solid black;
+        };
+    </style>
+</head>
+<body>
+<div>
+    <form action="/cadastre" method="POST">
+        <label>Nome: </label>
+        <input type="text"  name="name" id="name" placeholder="Nome" maxlength="60" minlength="5">
+        <label>CPF: </label>
+        <input type="text" pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})" title="Digite um CPF no formato: xxx.xxx.xxx-xx" name="cpf" id="cpf" maxlength="14" placeholder="CPF">
+        <button type="submit" ><i> </i>Cadastrar</button>
+    </form>
+</div>
+<table>
+    <thead>
+        <tr class="tbpessoa">
+            <th class="titulo">Nome</th>
+            <th class="titulo">CPF</th>
+            <th class="titulo">Qtd. Carros</th>
+            <th class="titulo">Comprador Apto</th>
+        </tr>
+    </thead>
+    <tbody>
+      {% for res in result %}
+        <tr>
+            <td class="titulo">{{res.nome}}</td>
+            <td class="titulo">{{res.cpf}}</td>
+            <td class="titulo">{{res.quantos[0]}}</td>
+            <td class="titulo">{{res.apto}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+</table>
+<a href="/">Voltar</a>
+</body>
+</html>

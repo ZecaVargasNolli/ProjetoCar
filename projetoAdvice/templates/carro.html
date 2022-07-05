@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Carro</title>
+    <style>
+        .titulo {
+            font-size:800;
+            border: 1px solid black;
+        };
+        .tbcar {
+            color:red;
+            border: 1px solid black;
+        };
+    </style>
+</head>
+<body>
+<div>
+    <form action="/cadastraCarro" method="POST">
+            <select  name="cpf" id="cpf" required>
+                <option value="">Selecione...</option>
+                {% for pessoa in resultPessoa %}
+                <option value="{{ pessoa.cpf }}">{{ pessoa.nome }}</option>
+                {% endfor %}
+            </select>
+            <select name="cor" id="cor" required>
+                <option value="">Selecione...</option>
+                {% for c in cor %}
+                <option  value="{{ c[0] }}">{{ c[1] }}</option>
+                {% endfor %}
+            </select>
+            <select name="tipo" id="tipo" required>
+                <option value="">Selecione...</option>
+                {% for t in tipo %}
+                <option value="{{ t[0] }}">{{ t[1] }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Cadastrar</button>
+    </form>
+</div>
+<table>
+    <thead>
+        <tr class="tbcar">
+            <th class="titulo">Proprietário</th>
+            <th class="titulo">Tipo</th>
+            <th class="titulo">Cor</th>
+            <th class="titulo"></th>
+        </tr>
+    </thead>
+    <tbody>
+      {% for res in result %}
+          <tr>
+              <td class="titulo">{{res.nomeProprietario}}</td>
+              <td class="titulo">{{res.tipo}}</td>
+              <td class="titulo">{{res.cor}}</td>
+              <td class="titulo"><a href="/deletarCarro?id={{res.id}}">Excluir</a></td>
+
+          </tr>
+      {% endfor %}
+    </tbody>
+</table>
+<a href="/">Voltar</a>
+</body>
+</html>
